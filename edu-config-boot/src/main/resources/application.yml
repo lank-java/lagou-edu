@@ -11,3 +11,6 @@ spring:
         git:
           uri: https://gitee.com/lankkk/lank-edu-repo.git
           default-label: master
+logging:
+  level:
+    org.springframework.cloud: debug
