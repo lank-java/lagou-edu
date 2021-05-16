@@ -1,0 +1,17 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: edu-oauth-boot
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://lank:lank@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+logging:
+  level:
+    org.springframework.cloud: debug
