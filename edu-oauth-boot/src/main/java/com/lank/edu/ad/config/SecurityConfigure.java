@@ -1,4 +1,4 @@
-package com.lank.edu.config;
+package com.lank.edu.ad.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

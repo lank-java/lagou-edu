@@ -4,10 +4,6 @@ server:
 spring:
   application:
     name: edu-eureka-boot
-  security:
-    user:
-      name: lank
-      password: lank
 
 eureka:
   instance:

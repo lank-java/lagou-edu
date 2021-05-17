@@ -1,15 +1,9 @@
 server:
-  port: 8006
+  port: 8009
 
 spring:
   application:
-    name: edu-ad-boot
-  cloud:
-    config:
-      uri: http://localhost:8090
-      profile: dev
-      label: master
-      name: lank-edu-ad
+    name: oauth-demo
 eureka:
   client:
     service-url:
