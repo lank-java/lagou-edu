@@ -21,6 +21,9 @@ import java.util.ArrayList;
 @Configuration
 public class SecurityConfigure extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
+
     /**
      * 注册一个认证管理器到spring容器
      * @return AuthenticationManager
@@ -49,9 +52,6 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder);
 
     }
-
-    @Autowired
-    private  PasswordEncoder passwordEncoder;
 
     /**
      * 密码校验对象

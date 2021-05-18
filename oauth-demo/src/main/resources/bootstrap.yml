@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: oauth-demo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
 eureka:
   client:
     service-url:
@@ -14,3 +18,4 @@ eureka:
 logging:
   level:
     org.springframework.security: debug
+
