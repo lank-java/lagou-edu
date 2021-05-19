@@ -1,5 +1,6 @@
-package com.lank.edu.ad.config;
+package com.lank.edu.config;
 
+import com.lank.edu.service.JdbcUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +24,11 @@ import java.util.ArrayList;
 @Configuration
 public class SecurityConfigure extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+    @Resource
     private  PasswordEncoder passwordEncoder;
+
+    @Resource
+    private JdbcUserDetailsService jdbcUserDetailsService;
 
     /**
      * 注册一个认证管理器到spring容器
@@ -43,12 +49,16 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // todo 关联数据库
-        // 参数：用户名，密码，权限信息
-        UserDetails userDetails = new User("lank","lank",new ArrayList<>());
-        auth.inMemoryAuthentication()
-                .withUser(userDetails)
-                // 密码编码器，如md5
+//        // todo 关联数据库
+//        // 参数：用户名，密码，权限信息
+//        UserDetails userDetails = new User("lank","lank",new ArrayList<>());
+//        auth.inMemoryAuthentication()
+//                .withUser(userDetails)
+//                // 密码编码器，如md5
+//                .passwordEncoder(passwordEncoder);
+
+        //jwt改造
+        auth.userDetailsService(jdbcUserDetailsService)
                 .passwordEncoder(passwordEncoder);
 
     }

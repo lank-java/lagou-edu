@@ -1,4 +1,4 @@
-package com.lank.edu.ad.config;
+package com.lank.edu.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -35,7 +35,10 @@ public class OauthServerConfigure extends AuthorizationServerConfigurerAdapter {
     @Resource
     private DataSource dataSource;
 
-    private String signKey = "";
+    @Resource
+    private AccessTokenConvertor accessTokenConvertor;
+
+    private String signKey = "jwt_key";
 
     /**
      * 认证服务器最终式以api接口的方式对外提供服务
@@ -137,6 +140,7 @@ public class OauthServerConfigure extends AuthorizationServerConfigurerAdapter {
         jwtAccessTokenConverter.setSigningKey(signKey);
         // 验证时使用的密钥和签名的时候保持一致
         jwtAccessTokenConverter.setVerifier(new MacSigner(signKey));
+        jwtAccessTokenConverter.setAccessTokenConverter(accessTokenConvertor);
         return jwtAccessTokenConverter;
     }
 
